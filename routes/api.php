@@ -27,3 +27,5 @@ Route::get('/listarVendedores', [VendedorController::class, 'listarVendedores'])
 Route::post('/cadastrarVenda', [VendasController::class, 'cadastrarVenda']);
 
 Route::get('/listarVendas', [VendasController::class, 'listarVendas']);
+
+Route::get('/listarVendas/Vendedor/{vendedor_id}', [VendasController::class, 'listarVendasVendedor']);

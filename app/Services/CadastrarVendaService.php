@@ -15,7 +15,9 @@ class CadastrarVendaService
     }
 
     public function cadastrarVenda(array $dados)
-    {
+    {        
+        $dados['comissao'] = $dados['valor'] * 0.085;
+
         try {
             return $this->vendasRepository->cadastrarVenda($dados);
         } catch (\Exception $e) {

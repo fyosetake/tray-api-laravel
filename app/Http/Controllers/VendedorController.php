@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Services\CadastrarVendedorService;
+use App\Services\ListarVendedoresService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class VendedorController extends Controller
 {
     private $cadastrarVendedorService;
+    private $listarVendedoresService;
 
-    public function __construct(CadastrarVendedorService $vendedoresService)
+    public function __construct(CadastrarVendedorService $cadastrarVendedores, ListarVendedoresService $listarVendedores)
     {
-        $this->cadastrarVendedorService = $vendedoresService;
+        $this->cadastrarVendedorService = $cadastrarVendedores;
+        $this->listarVendedoresService = $listarVendedores;
     }
 
     public function cadastrarVendedor(Request $request)
@@ -34,5 +37,11 @@ class VendedorController extends Controller
         }
 
         return new Response($vendedorCadastrado, 201);
+    }
+
+    public function listarVendedores()
+    {
+        $vendedores = $this->listarVendedoresService->listarVendedores();
+        return new Response($vendedores, 200);
     }
 }

@@ -10,4 +10,9 @@ class VendedoresRepository
     {
         return Vendedor::create($dados);
     }
+
+    public function listarVendedores()
+    {
+        return Vendedor::all();
+    }
 }

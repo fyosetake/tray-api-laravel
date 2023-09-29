@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/cadastrarVendedor', [VendedorController::class, 'cadastrarVendedor']);
+
+Route::get('/listarVendedores', [VendedorController::class, 'listarVendedores']);

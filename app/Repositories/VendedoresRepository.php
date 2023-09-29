@@ -29,4 +29,16 @@ class VendedoresRepository
 
         return false;
     }
+
+    public function editarVendedor($vendedor_id, array $dados)
+    {
+        $vendedor = Vendedor::find($vendedor_id);
+
+        if ($vendedor) {
+            $vendedor->update($dados);
+            return $vendedor;
+        }
+
+        return null;
+    }
 }

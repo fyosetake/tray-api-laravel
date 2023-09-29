@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\ListarVendasService;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ListarVendasController extends Controller

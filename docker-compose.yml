@@ -12,6 +12,9 @@ services:
       - APP_ENV=local
       - APP_DEBUG=true
       - APP_KEY=your-app-key
+    depends_on:
+      mysql:
+        condition: service_healthy
 
   mysql:
     image: mysql:latest
@@ -22,3 +25,7 @@ services:
       - MYSQL_DATABASE=your-database-name
       - MYSQL_USER=your-database-username
       - MYSQL_PASSWORD=your-database-password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10

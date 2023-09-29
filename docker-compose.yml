@@ -12,3 +12,13 @@ services:
       - APP_ENV=local
       - APP_DEBUG=true
       - APP_KEY=your-app-key
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=your-mysql-root-password
+      - MYSQL_DATABASE=your-database-name
+      - MYSQL_USER=your-database-username
+      - MYSQL_PASSWORD=your-database-password

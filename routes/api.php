@@ -25,3 +25,5 @@ Route::post('/cadastrarVendedor', [VendedorController::class, 'cadastrarVendedor
 Route::get('/listarVendedores', [VendedorController::class, 'listarVendedores']);
 
 Route::post('/cadastrarVenda', [VendasController::class, 'cadastrarVenda']);
+
+Route::get('/listarVendas', [VendasController::class, 'listarVendas']);

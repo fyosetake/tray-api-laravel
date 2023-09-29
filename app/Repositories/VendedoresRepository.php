@@ -2,23 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\Vendedor;
+use App\Models\Vendedores;
 
 class VendedoresRepository
 {
     public function cadastrarVendedor(array $dados)
     {
-        return Vendedor::create($dados);
+        return Vendedores::create($dados);
     }
 
     public function listarVendedores()
     {
-        return Vendedor::all();
+        return Vendedores::all();
     }
 
     public function deletarVendedor($vendedor_id)
     {
-        $vendedor = Vendedor::find($vendedor_id);
+        $vendedor = Vendedores::find($vendedor_id);
 
         if ($vendedor) {
             $vendedor->vendas()->delete();
@@ -32,7 +32,7 @@ class VendedoresRepository
 
     public function editarVendedor($vendedor_id, array $dados)
     {
-        $vendedor = Vendedor::find($vendedor_id);
+        $vendedor = Vendedores::find($vendedor_id);
 
         if ($vendedor) {
             $vendedor->update($dados);

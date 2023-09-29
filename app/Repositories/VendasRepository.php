@@ -2,22 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\Venda;
+use App\Models\Vendas;
 
 class VendasRepository
 {
     public function cadastrarVenda(array $dados)
     {
-        return Venda::create($dados);
+        return Vendas::create($dados);
     }
 
     public function listarVendas()
     {
-        return Venda::all();
+        return Vendas::all();
     }
 
     public function listarVendasVendedor($vendedor_id)
     {
-        return Venda::where('vendedor_id', $vendedor_id)->get();
+        return Vendas::where('vendedor_id', $vendedor_id)->get();
     }
 }

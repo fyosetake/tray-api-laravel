@@ -12,7 +12,6 @@ services:
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
-      - APP_KEY=your-app-key
     depends_on:
       mysql:
         condition: service_healthy
@@ -25,10 +24,10 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=your-mysql-root-password
-      - MYSQL_DATABASE=your-database-name
-      - MYSQL_USER=your-database-username
-      - MYSQL_PASSWORD=your-database-password
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_DATABASE=TrayRetailSalesPro
+      - MYSQL_USER=tray-user
+      - MYSQL_PASSWORD=tray123
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 20s

@@ -10,4 +10,9 @@ class VendasRepository
     {
         return Venda::create($dados);
     }
+
+    public function listarVendas()
+    {
+        return Venda::all();
+    }
 }

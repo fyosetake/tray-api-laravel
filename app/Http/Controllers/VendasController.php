@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Services\CadastrarVendaService;
+use App\Services\ListarVendasService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class VendasController extends Controller
 {
     private $cadastrarVendaService;
+    private $listarVendasService;
 
-    public function __construct(CadastrarVendaService $cadastrarVendaService)
+    public function __construct(CadastrarVendaService $cadastrarVendaService, ListarVendasService $listarVendasService)
     {
         $this->cadastrarVendaService = $cadastrarVendaService;
+        $this->listarVendasService = $listarVendasService;
     }
 
     public function cadastrarVenda(Request $request)
@@ -38,5 +41,16 @@ class VendasController extends Controller
         }
 
         return new Response($vendaCadastrada, 201);
+    }
+
+    public function listarVendas()
+    {
+        try {
+            $vendas = $this->listarVendasService->listarVendas();
+        } catch (\Exception $e) {
+            return new Response(['error' => 'Ocorreu um erro ao listar as vendas: ' . $e->getMessage()], 500);
+        }
+
+        return new Response($vendas, 200);
     }
 }

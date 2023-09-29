@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VendedorController;
+use App\Http\Controllers\ListarVendedoresController;
+use App\Http\Controllers\CadastrarVendedorController;
+use App\Http\Controllers\DeletarVendedorController;
+use App\Http\Controllers\EditarVendedorController;
 use App\Http\Controllers\CadastrarVendaController;
 use App\Http\Controllers\ListarVendasController;
 
@@ -21,9 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/cadastrarVendedor', [VendedorController::class, 'cadastrarVendedor']);
+Route::post('/cadastrarVendedor', [CadastrarVendedorController::class, 'cadastrarVendedor']);
 
-Route::get('/listarVendedores', [VendedorController::class, 'listarVendedores']);
+Route::get('/listarVendedores', [ListarVendedoresController::class, 'listarVendedores']);
 
 Route::post('/cadastrarVenda', [CadastrarVendaController::class, 'cadastrarVenda']);
 
@@ -31,6 +34,6 @@ Route::get('/listarVendas', [ListarVendasController::class, 'listarVendas']);
 
 Route::get('/listarVendas/Vendedor/{vendedor_id}', [ListarVendasController::class, 'listarVendasVendedor']);
 
-Route::delete('/deletarVendedor/{vendedor_id}', [VendedorController::class, 'deletarVendedor']);
+Route::delete('/deletarVendedor/{vendedor_id}', [DeletarVendedorController::class, 'deletarVendedor']);
 
-Route::put('/editarVendedor/{vendedor_id}', [VendedorController::class, 'editarVendedor']);
+Route::put('/editarVendedor/{vendedor_id}', [EditarVendedorController::class, 'editarVendedor']);

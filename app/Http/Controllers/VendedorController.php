@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\CadastrarVendedorService;
 use App\Services\ListarVendedoresService;
+use App\Services\DeletarVendedorService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -11,11 +12,13 @@ class VendedorController extends Controller
 {
     private $cadastrarVendedorService;
     private $listarVendedoresService;
+    private $deletarVendedorService;
 
-    public function __construct(CadastrarVendedorService $cadastrarVendedores, ListarVendedoresService $listarVendedores)
+    public function __construct(CadastrarVendedorService $cadastrarVendedores, ListarVendedoresService $listarVendedores, DeletarVendedorService $deletarVendedor)
     {
         $this->cadastrarVendedorService = $cadastrarVendedores;
         $this->listarVendedoresService = $listarVendedores;
+        $this->deletarVendedorService = $deletarVendedor;
     }
 
     public function cadastrarVendedor(Request $request)
@@ -48,5 +51,20 @@ class VendedorController extends Controller
         }
 
         return new Response($vendedores, 200);
+    }
+
+    public function deletarVendedor($vendedor_id)
+    {
+        try {
+            $vendedorDeletado = $this->deletarVendedorService->deletarVendedor($vendedor_id);
+
+            if ($vendedorDeletado) {
+                return new Response(['message' => 'Vendedor deletado com sucesso'], 200);
+            } else {
+                return new Response(['error' => 'Vendedor não encontrado'], 404);
+            }
+        } catch (\Exception $e) {
+            return new Response(['error' => 'Ocorreu um erro ao deletar o vendedor: ' . $e->getMessage()], 500);
+        }
     }
 }

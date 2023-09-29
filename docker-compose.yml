@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   app:
+    container_name: api-tray
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,6 +21,7 @@ services:
 
   mysql:
     image: mysql:latest
+    container_name: db-tray
     ports:
       - "3306:3306"
     environment:

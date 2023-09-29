@@ -53,4 +53,15 @@ class VendasController extends Controller
 
         return new Response($vendas, 200);
     }
+
+    public function listarVendasVendedor($vendedor_id)
+    {
+        try {
+            $vendas = $this->listarVendasService->listarVendas($vendedor_id);
+        } catch (\Exception $e) {
+            return new Response(['error' => 'Ocorreu um erro ao listar as vendas: ' . $e->getMessage()], 500);
+        }
+
+        return new Response($vendas, 200);
+    }
 }

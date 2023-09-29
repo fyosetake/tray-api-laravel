@@ -15,4 +15,9 @@ class VendasRepository
     {
         return Venda::all();
     }
+
+    public function listarVendasVendedor($vendedor_id)
+    {
+        return Venda::where('vendedor_id', $vendedor_id)->get();
+    }
 }

@@ -12,4 +12,9 @@ class Vendedor extends Model
     protected $fillable = ['nome', 'email'];
 
     protected $table = 'Vendedores';
+
+    public function vendas()
+    {
+        return $this->hasMany(Venda::class, 'vendedor_id');
+    }
 }

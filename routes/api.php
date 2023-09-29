@@ -31,3 +31,5 @@ Route::get('/listarVendas', [VendasController::class, 'listarVendas']);
 Route::get('/listarVendas/Vendedor/{vendedor_id}', [VendasController::class, 'listarVendasVendedor']);
 
 Route::delete('/deletarVendedor/{vendedor_id}', [VendedorController::class, 'deletarVendedor']);
+
+Route::put('/editarVendedor/{vendedor_id}', [VendedorController::class, 'editarVendedor']);

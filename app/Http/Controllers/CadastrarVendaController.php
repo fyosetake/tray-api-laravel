@@ -20,14 +20,12 @@ class CadastrarVendaController extends Controller
         $request->validate([
             'vendedor_id' => 'required',
             'valor' => 'required|numeric',
-            'comissao' => 'required|numeric',
             'data' => 'required|date'
         ]);
         
         $dadosVenda = [
             'vendedor_id' => $request->input('vendedor_id'),
             'valor' => $request->input('valor'),
-            'comissao' => $request->input('comissao'),
             'data' => $request->input('data')
         ];
 

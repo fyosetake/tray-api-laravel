@@ -41,7 +41,12 @@ class VendedorController extends Controller
 
     public function listarVendedores()
     {
-        $vendedores = $this->listarVendedoresService->listarVendedores();
+        try {
+            $vendedores = $this->listarVendedoresService->listarVendedores();
+        } catch (\Exception $e) {
+            return new Response(['error' => 'Ocorreu um erro ao listar os vendedores: ' . $e->getMessage()], 500);
+        }
+
         return new Response($vendedores, 200);
     }
 }

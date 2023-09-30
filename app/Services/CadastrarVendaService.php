@@ -14,12 +14,24 @@ class CadastrarVendaService
         $this->vendasRepository = $vendasRepository;
     }
 
+    private function calcularComissao(float $valor): float
+    {
+        return $valor * 0.085;
+    }
+
     public function cadastrarVenda(array $dados)
     {        
-        $dados['comissao'] = $dados['valor'] * 0.085;
+        $dados['comissao'] = $this->calcularComissao($dados['valor']);
+
+        $dadosVenda = [
+            'vendedor_id' => $dados['vendedor_id'],
+            'valor' => $dados['valor'],
+            'data' => $dados['data'],
+            'comissao' => $dados['comissao']
+        ];
 
         try {
-            return $this->vendasRepository->cadastrarVenda($dados);
+            return $this->vendasRepository->cadastrarVenda($dadosVenda);
         } catch (\Exception $e) {
             throw new Exception($e->getMessage());
         }

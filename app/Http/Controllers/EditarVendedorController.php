@@ -32,9 +32,9 @@ class EditarVendedorController extends Controller
 
             if ($vendedorAtualizado) {
                 return new Response(['message' => 'Vendedor atualizado com sucesso', 'data' => $vendedorAtualizado], 200);
-            } else {
-                return new Response(['error' => 'Vendedor não encontrado'], 404);
             }
+
+            return new Response(['error' => 'Vendedor não encontrado'], 404);
         } catch (\Exception $e) {
             return new Response(['error' => 'Ocorreu um erro ao editar o vendedor: ' . $e->getMessage()], 500);
         }

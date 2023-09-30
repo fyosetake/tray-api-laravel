@@ -8,6 +8,7 @@ use App\Http\Controllers\DeletarVendedorController;
 use App\Http\Controllers\EditarVendedorController;
 use App\Http\Controllers\CadastrarVendaController;
 use App\Http\Controllers\ListarVendasController;
+use App\Http\Controllers\EnviarEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,5 @@ Route::get('/listarVendas/Vendedor/{vendedor_id}', [ListarVendasController::clas
 Route::delete('/deletarVendedor/{vendedor_id}', [DeletarVendedorController::class, 'deletarVendedor']);
 
 Route::put('/editarVendedor/{vendedor_id}', [EditarVendedorController::class, 'editarVendedor']);
+
+Route::post('/enviarEmail', [EnviarEmailController::class, 'enviarEmail']);

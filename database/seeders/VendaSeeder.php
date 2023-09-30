@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Venda;
+use App\Models\Vendas;
 
 class VendaSeeder extends Seeder
 {
@@ -12,6 +12,6 @@ class VendaSeeder extends Seeder
      */
     public function run(): void
     {
-        Venda::factory()->count(10)->create();
+        Vendas::factory()->count(10)->create();
     }
 }

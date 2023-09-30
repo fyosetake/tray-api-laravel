@@ -3,14 +3,14 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Vendedor;
+use App\Models\Vendedores;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Vendedor>
  */
-class VendedorFactory extends Factory
+class VendedoresFactory extends Factory
 {
-    protected $model = Vendedor::class;
+    protected $model = Vendedores::class;
 
     public function definition()
     {

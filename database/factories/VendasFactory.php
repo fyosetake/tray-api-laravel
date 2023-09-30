@@ -3,14 +3,14 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Venda;
+use App\Models\Vendas;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Venda>
  */
-class VendaFactory extends Factory
+class VendasFactory extends Factory
 {
-    protected $model = Venda::class;
+    protected $model = Vendas::class;
 
     public function definition()
     {
@@ -19,7 +19,7 @@ class VendaFactory extends Factory
 
         return [
             'vendedor_id' => function () {
-                return \App\Models\Vendedor::factory()->create()->id;
+                return \App\Models\Vendedores::factory()->create()->id;
             },
             'valor' => $valor,
             'comissao' => $comissao,

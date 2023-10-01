@@ -1,4 +1,4 @@
-# Tray-retail-sales-pro
+# Tray API Laravel
 
 Este é um projeto em Laravel que contém APIs para operações relacionadas ao cadastro de Vendedores e Vendas com base de dados MySQL.
 
@@ -22,7 +22,7 @@ Este é um projeto em Laravel que contém APIs para operações relacionadas ao 
 
 ```bash
 
-git clone git@github.com:fyosetake/tray-retail-sales-pro.git
+git clone git@github.com:fyosetake/tray-api-laravel.git
 
 ```
 
@@ -30,7 +30,7 @@ git clone git@github.com:fyosetake/tray-retail-sales-pro.git
 
 ```bash
 
-cd tray-retail-sales-pro
+cd tray-api-laravel
 
 ```
 

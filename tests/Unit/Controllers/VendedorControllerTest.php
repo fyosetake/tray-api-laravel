@@ -36,72 +36,125 @@ class VendedorControllerTest extends TestCase
         );
     }
 
-    public function testCadastrarVendedor()
+    /**
+     * @dataProvider dadosParaCadastrarVendedor
+     */
+    public function testCadastrarVendedor($dadosVendedor, $validacao, $retornoServico, $codigoStatus, $respostaEsperada)
     {
-        $dadosVendedor = ['nome' => 'Fernando Teste', 'email' => 'fernando.teste@email.com'];
         $request = new Request($dadosVendedor);
         
         $this->validarRequestService->expects($this->once())
             ->method('validarRequest')
-            ->willReturn(true);
+            ->willReturn($validacao);
         
         $this->cadastrarVendedorService->expects($this->once())
             ->method('cadastrarVendedor')
-            ->willReturn($dadosVendedor);
+            ->willReturn($retornoServico);
 
         $response = $this->controller->cadastrarVendedor($request);
 
-        $this->assertEquals(201, $response->getStatusCode());
-        $this->assertEquals(['success' => true, 'message' => 'Cadastro realizado!'], json_decode($response->getContent(), true));
+        $this->assertEquals($codigoStatus, $response->getStatusCode());
+        $this->assertEquals($respostaEsperada, json_decode($response->getContent(), true));
     }
 
-    public function testEditarVendedor()
+    /**
+     * @dataProvider dadosParaEditarVendedor
+     */
+    public function testEditarVendedor($dadosVendedor, $validacao, $retornoServico, $codigoStatus, $respostaEsperada)
     {
         $vendedorId = 1;
-        $dadosVendedor = ['nome' => 'Novo Nome', 'email' => 'novo.email@example.com'];
         $request = new Request($dadosVendedor);
-        $vendedorEncontrado = ['id' => 1, 'nome' => 'Novo Nome', 'email' => 'novo.email@example.com'];
 
         $this->validarRequestService->expects($this->once())
             ->method('validarRequest')
-            ->willReturn(true);
+            ->willReturn($validacao);
 
         $this->editarVendedorService->expects($this->once())
             ->method('editarVendedor')
             ->with($vendedorId, $dadosVendedor)
-            ->willReturn($vendedorEncontrado);
+            ->willReturn($retornoServico);
 
         $response = $this->controller->editarVendedor($request, $vendedorId);
-        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame($codigoStatus, $response->getStatusCode());
     }
 
-    public function testListarVendedores()
+    /**
+     * @dataProvider dadosParaListarVendedores
+     */
+    public function testListarVendedores($dadosVendedores, $codigoStatus, $respostaEsperada)
     {
-        $dadosVendedores = [['nome' => 'Vendedor1'], ['nome' => 'Vendedor2'], ['nome' => 'Vendedor3']];
-
         $this->listarVendedoresService->expects($this->once())
             ->method('listarVendedores')
             ->willReturn($dadosVendedores);
 
         $response = $this->controller->listarVendedores();
 
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals($dadosVendedores, json_decode($response->getContent(), true));
+        $this->assertEquals($codigoStatus, $response->getStatusCode());
+        $this->assertEquals($respostaEsperada, json_decode($response->getContent(), true));
     }
 
-    public function testDeletarVendedor()
+    /**
+     * @dataProvider dadosParaDeletarVendedor
+     */
+    public function testDeletarVendedor($vendedorId, $retornoServico, $codigoStatus, $respostaEsperada)
     {
-        $vendedorId = 1;
-        $vendedorDeletado = true;
-
         $this->deletarVendedorService->expects($this->once())
             ->method('deletarVendedor')
             ->with($vendedorId)
-            ->willReturn($vendedorDeletado);
+            ->willReturn($retornoServico);
 
         $response = $this->controller->deletarVendedor($vendedorId);
 
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals(['success' => true, 'message' => 'Vendedor excluído!'], json_decode($response->getContent(), true));
+        $this->assertEquals($codigoStatus, $response->getStatusCode());
+        $this->assertEquals($respostaEsperada, json_decode($response->getContent(), true));
+    }
+
+    public static function dadosParaCadastrarVendedor()
+    {
+        return [
+            [
+                ['nome' => 'Fernando Teste', 'email' => 'fernando.teste@email.com'],
+                true,
+                ['nome' => 'Fernando Teste', 'email' => 'fernando.teste@email.com'],
+                201,
+                ['success' => true, 'message' => 'Cadastro realizado!']
+            ],
+        ];
+    }
+
+    public static function dadosParaEditarVendedor()
+    {
+        return [
+            [
+                ['nome' => 'Novo Nome', 'email' => 'novo.email@example.com'],
+                true,
+                ['id' => 1, 'nome' => 'Novo Nome', 'email' => 'novo.email@example.com'],
+                200,
+                ['success' => true, 'message' => 'Vendedor alterado!']
+            ],
+        ];
+    }
+
+    public static function dadosParaListarVendedores()
+    {
+        return [
+            [
+                [['nome' => 'Vendedor1'], ['nome' => 'Vendedor2'], ['nome' => 'Vendedor3']],
+                200,
+                [['nome' => 'Vendedor1'], ['nome' => 'Vendedor2'], ['nome' => 'Vendedor3']]
+            ],
+        ];
+    }
+
+    public static function dadosParaDeletarVendedor()
+    {
+        return [
+            [
+                1,
+                true,
+                200,
+                ['success' => true, 'message' => 'Vendedor excluído!']
+            ],
+        ];
     }
 }

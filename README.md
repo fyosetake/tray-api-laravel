@@ -1,66 +1,184 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Tray-retail-sales-pro
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este é um projeto em Laravel que contém APIs para operações relacionadas ao cadastro de Vendedores e Vendas com base de dados MySQL.
 
-## About Laravel
+## Pré-requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Laravel](https://laravel.com/)
+- [PHP](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
+- [Docker](https://www.docker.com/)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Versões utilizadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.2.10
+- Laravel v10.24.0
+- Composer version 2.5.8
+- Docker version 24.0.6 (build ed223bc)
 
-## Learning Laravel
+## Instalação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone o repositório:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+git clone git@github.com:fyosetake/tray-retail-sales-pro.git
 
-## Laravel Sponsors
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2. Navegue até o diretório do projeto:
 
-### Premium Partners
+```bash
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+cd tray-retail-sales-pro
 
-## Contributing
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Instale as dependências do Composer:
 
-## Code of Conduct
+```bash
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+composer install
 
-## Security Vulnerabilities
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Construa as imagens e inicie os Containeres no Docker
 
-## License
+1. Construa as imagens da aplicação Laravel e do Banco de dados MySQL:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+
+docker-compose build
+
+```
+
+2. Inicie os Containeres:
+
+```bash
+
+docker-compose up -dV
+
+```
+
+## Execute as Migrations
+
+Para executar as Migrations, acesse o container do Laravel:
+
+1. Certifique-se de que o container esteja em execução.
+
+2. No terminal, execute o seguinte comando para obter o CONTAINER ID da aplicação Laravel:
+
+```bash
+
+docker ps
+
+```
+
+3. Acesse o container do Laravel:
+
+```bash
+
+docker exec -it {CONTAINER ID} bash
+
+```
+
+4. No container, execute o comando Artisan para rodar as Migrations:
+
+```bash
+
+php artisan migrate
+
+```
+
+5. No container, execute o comando Artisan para rodar os Seeders:
+
+```bash
+
+php artisan make:seeder VendaSeeder
+
+```
+
+```bash
+
+php artisan make:seeder VendedorSeeder
+
+```
+
+## Instruções para testes
+
+Para rodar os testes de unidade, basta executar o seguinte comando:
+
+```bash
+
+php artisan test
+
+```
+
+## Instruções de uso
+
+Conforme o desafio proposto, o uso pode ser assim definido:
+
+1. Listar Vendas:
+
+```bash
+
+curl -i -X GET http://localhost:80/api/listarVendas
+
+```
+
+2. Listar Vendedores:
+
+```bash
+
+curl -i -X GET http://localhost:80/api/listarVendedores
+
+```
+
+3. Listar as Vendas de um Vendedor:
+
+```bash
+
+curl -i -X GET http://localhost:80/api/listarVendas/Vendedor/{vendedor_id}
+
+```
+
+4. Cadastrar uma Venda:
+
+```bash
+
+curl -X POST -H "Content-Type: application/json" -d '{"vendedor_id": 1, "valor": 10000, "data": "2023-09-30"}' http://localhost:80/api/cadastrarVenda
+
+```
+
+5. Cadastrar um Vendedor:
+
+```bash
+
+curl -X POST -H "Content-Type: application/json" -d '{"nome":"Fernando Yosetake", "email":"fyosetake@gmail.com"}' http://localhost:80/api/cadastrarVendedor
+
+```
+
+6. Excluir um Vendedor:
+
+```bash
+
+curl -i -X DELETE http://localhost:80/api/deletarVendedor/1
+
+```
+
+7. Editar um Vendedor:
+
+```bash
+
+curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Fernando Yosetake", "email":"fyosetake@
+gmail.com"}' http://localhost:80/api/editarVendedor/20
+
+```
+
+7. Enviar e-mail para Vendedor ou Administrador:
+
+```bash
+
+curl -X POST -H "Content-Type: application/json" -d '{"email":"fyosetake@gmail.com", "perfil":"Administrador"}' http://localhost:80/api/enviarEmail
+
+```

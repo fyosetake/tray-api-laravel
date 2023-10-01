@@ -122,7 +122,7 @@ Conforme o desafio proposto, o uso pode ser assim definido:
 
 ```bash
 
-curl -i -X GET http://localhost:80/api/listarVendas
+curl -i -H "Authorization: Bearer {token}" -X GET http://localhost:80/api/listarVendas
 
 ```
 
@@ -130,7 +130,7 @@ curl -i -X GET http://localhost:80/api/listarVendas
 
 ```bash
 
-curl -i -X GET http://localhost:80/api/listarVendedores
+curl -i -H "Authorization: Bearer {token}" -X GET http://localhost:80/api/listarVendedores
 
 ```
 
@@ -138,7 +138,7 @@ curl -i -X GET http://localhost:80/api/listarVendedores
 
 ```bash
 
-curl -i -X GET http://localhost:80/api/listarVendas/Vendedor/{vendedor_id}
+curl -i -H "Authorization: Bearer {token}" -X GET http://localhost:80/api/listarVendas/Vendedor/{vendedor_id}
 
 ```
 
@@ -146,7 +146,7 @@ curl -i -X GET http://localhost:80/api/listarVendas/Vendedor/{vendedor_id}
 
 ```bash
 
-curl -X POST -H "Content-Type: application/json" -d '{"vendedor_id": 1, "valor": 10000, "data": "2023-09-30"}' http://localhost:80/api/cadastrarVenda
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" \-d '{"vendedor_id": 1, "valor": 10000, "data": "2023-09-30"}' http://localhost:80/api/cadastrarVenda
 
 ```
 
@@ -154,7 +154,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"vendedor_id": 1, "valor":
 
 ```bash
 
-curl -X POST -H "Content-Type: application/json" -d '{"nome":"Fernando Yosetake", "email":"fyosetake@gmail.com"}' http://localhost:80/api/cadastrarVendedor
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" \-d '{"nome":"Fernando Yosetake", "email":"fyosetake@gmail.com"}' http://localhost:80/api/cadastrarVendedor
 
 ```
 
@@ -162,7 +162,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"nome":"Fernando Yosetake"
 
 ```bash
 
-curl -i -X DELETE http://localhost:80/api/deletarVendedor/1
+curl -i -H "Authorization: Bearer {token}" -X DELETE http://localhost:80/api/deletarVendedor/1
 
 ```
 
@@ -170,8 +170,7 @@ curl -i -X DELETE http://localhost:80/api/deletarVendedor/1
 
 ```bash
 
-curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Fernando Yosetake", "email":"fyosetake@
-gmail.com"}' http://localhost:80/api/editarVendedor/20
+curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer {token}" \-d '{"nome":"Fernando Yosetake", "email":"fyosetake@gmail.com"}' http://localhost:80/api/editarVendedor/20
 
 ```
 
@@ -179,6 +178,6 @@ gmail.com"}' http://localhost:80/api/editarVendedor/20
 
 ```bash
 
-curl -X POST -H "Content-Type: application/json" -d '{"email":"fyosetake@gmail.com", "perfil":"Administrador"}' http://localhost:80/api/enviarEmail
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" \-d '{"email":"fyosetake@gmail.com", "perfil":"Administrador"}' http://localhost:80/api/enviarEmail
 
 ```

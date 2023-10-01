@@ -16,10 +16,6 @@ class EditarVendedorService
 
     public function editarVendedor($vendedor_id, array $dadosVendedor)
     {
-        try {
-            return $this->vendedoresRepository->editarVendedor($vendedor_id, $dadosVendedor);
-        } catch (\Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        return $this->vendedoresRepository->editarVendedor($vendedor_id, $dadosVendedor);
     }
 }

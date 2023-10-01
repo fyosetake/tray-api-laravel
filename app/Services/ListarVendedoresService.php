@@ -16,10 +16,6 @@ class ListarVendedoresService
 
     public function listarVendedores()
     {
-        try {
-            return $this->vendedoresRepository->listarVendedores();
-        } catch (\Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        return $this->vendedoresRepository->listarVendedores();
     }
 }

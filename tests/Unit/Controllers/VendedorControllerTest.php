@@ -7,7 +7,6 @@ use App\Services\ValidarRequestService;
 use App\Services\EditarVendedorService;
 use App\Services\ListarVendedoresService;
 use App\Services\DeletarVendedorService;
-use Illuminate\Http\Response;
 use PHPUnit\Framework\TestCase;
 
 class VendedorControllerTest extends TestCase
@@ -21,11 +20,11 @@ class VendedorControllerTest extends TestCase
 
     public function setUp(): void
     {
-        $this->cadastrarVendedorService = $this->createMock(\App\Services\CadastrarVendedorService::class);
-        $this->validarRequestService = $this->createMock(\App\Services\ValidarRequestService::class);
-        $this->editarVendedorService = $this->createMock(\App\Services\EditarVendedorService::class);
-        $this->listarVendedoresService = $this->createMock(\App\Services\ListarVendedoresService::class);
-        $this->deletarVendedorService = $this->createMock(\App\Services\DeletarVendedorService::class);
+        $this->cadastrarVendedorService = $this->createMock(CadastrarVendedorService::class);
+        $this->validarRequestService = $this->createMock(ValidarRequestService::class);
+        $this->editarVendedorService = $this->createMock(EditarVendedorService::class);
+        $this->listarVendedoresService = $this->createMock(ListarVendedoresService::class);
+        $this->deletarVendedorService = $this->createMock(DeletarVendedorService::class);
 
         $this->controller = new VendedorController(
             $this->cadastrarVendedorService,

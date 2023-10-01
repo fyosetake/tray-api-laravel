@@ -46,7 +46,10 @@ class CadastrarVendedorControllerTest extends TestCase
             [
                 ['nome' => 'Fernando Teste', 'email' => 'fernando.teste@email.com'],
                 201,
-                ['nome' => 'Fernando Teste', 'email' => 'fernando.teste@email.com']
+                [
+                    'success' => 'true',
+                    'message' => 'Cadastro realizado!'
+                ]
             ],
         ];
     }

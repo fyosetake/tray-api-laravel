@@ -3,24 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Services\EditarVendedorService;
+use App\Services\ValidarRequestService;
+use App\Models\Vendedores;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class EditarVendedorController extends Controller
 {
     private $editarVendedorService;
+    private $validarRequestService;
 
-    public function __construct(EditarVendedorService $editarVendedorService)
+    public function __construct(EditarVendedorService $editarVendedorService, ValidarRequestService $validarRequestService)
     {
         $this->editarVendedorService = $editarVendedorService;
+        $this->validarRequestService = $validarRequestService;
     }
 
     public function editarVendedor(Request $request, $vendedor_id)
     {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required|email',
-        ]);
+        $requestValida = $this->validarRequestService->validarRequest($request, new Vendedores);
+
+        if ($requestValida === false) {
+            return new Response('É necessário preencher todos os atributos corretamente', 400);
+        }
 
         $dadosVendedor = [
             'nome' => $request->input('nome'),

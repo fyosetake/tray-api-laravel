@@ -17,4 +17,12 @@ class Vendedores extends Model
     {
         return $this->hasMany(Vendas::class, 'vendedor_id');
     }
+
+    public static function rules()
+    {
+        return [
+            'nome' => 'required',
+            'email' => 'required|email',
+        ];
+    }
 }

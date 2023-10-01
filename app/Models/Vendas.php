@@ -17,4 +17,13 @@ class Vendas extends Model
     {
         return $this->belongsTo(Vendedores::class, 'vendedor_id');
     }
+
+    public static function rules()
+    {
+        return [
+            'vendedor_id' => 'required',
+            'valor' => 'required|numeric',
+            'data' => 'required|date',
+        ];
+    }
 }

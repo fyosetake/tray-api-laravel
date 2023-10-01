@@ -3,26 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Services\CadastrarVendaService;
+use App\Services\ValidarRequestService;
+use App\Models\Vendas;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class CadastrarVendaController extends Controller
 {
     private $cadastrarVendaService;
+    private $validarRequestService;
 
-    public function __construct(CadastrarVendaService $cadastrarVendaService)
+    public function __construct(CadastrarVendaService $cadastrarVendaService, ValidarRequestService $validarRequestService)
     {
         $this->cadastrarVendaService = $cadastrarVendaService;
+        $this->validarRequestService = $validarRequestService;
     }
 
     public function cadastrarVenda(Request $request)
     {
-        $request->validate([
-            'vendedor_id' => 'required',
-            'valor' => 'required|numeric',
-            'data' => 'required|date'
-        ]);
-        
+        $requestValida = $this->validarRequestService->validarRequest($request, new Vendas);
+
+        if ($requestValida === false) {
+            return new Response('É necessário preencher todos os atributos corretamente', 400);
+        }
+
         $dadosVenda = [
             'vendedor_id' => $request->input('vendedor_id'),
             'valor' => $request->input('valor'),

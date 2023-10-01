@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListarVendedoresController;
 use App\Http\Controllers\CadastrarVendedorController;
@@ -9,6 +8,7 @@ use App\Http\Controllers\EditarVendedorController;
 use App\Http\Controllers\CadastrarVendaController;
 use App\Http\Controllers\ListarVendasController;
 use App\Http\Controllers\EnviarEmailController;
+use App\Http\Controllers\AutenticacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,22 +21,22 @@ use App\Http\Controllers\EnviarEmailController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/autenticar', [AutenticacaoController::class, 'autenticar']);
 
-Route::post('/cadastrarVendedor', [CadastrarVendedorController::class, 'cadastrarVendedor']);
+Route::post('/registrar', [AutenticacaoController::class, 'registrar']);
 
-Route::get('/listarVendedores', [ListarVendedoresController::class, 'listarVendedores']);
+Route::middleware('auth:sanctum')->get('/listarVendedores', [ListarVendedoresController::class, 'listarVendedores']);
 
-Route::post('/cadastrarVenda', [CadastrarVendaController::class, 'cadastrarVenda']);
+Route::middleware('auth:sanctum')->post('/cadastrarVendedor', [CadastrarVendedorController::class, 'cadastrarVendedor']);
 
-Route::get('/listarVendas', [ListarVendasController::class, 'listarVendas']);
+Route::middleware('auth:sanctum')->post('/cadastrarVenda', [CadastrarVendaController::class, 'cadastrarVenda']);
 
-Route::get('/listarVendas/Vendedor/{vendedor_id}', [ListarVendasController::class, 'listarVendasVendedor']);
+Route::middleware('auth:sanctum')->get('/listarVendas', [ListarVendasController::class, 'listarVendas']);
 
-Route::delete('/deletarVendedor/{vendedor_id}', [DeletarVendedorController::class, 'deletarVendedor']);
+Route::middleware('auth:sanctum')->get('/listarVendas/Vendedor/{vendedor_id}', [ListarVendasController::class, 'listarVendasVendedor']);
 
-Route::put('/editarVendedor/{vendedor_id}', [EditarVendedorController::class, 'editarVendedor']);
+Route::middleware('auth:sanctum')->delete('/deletarVendedor/{vendedor_id}', [DeletarVendedorController::class, 'deletarVendedor']);
 
-Route::post('/enviarEmail', [EnviarEmailController::class, 'enviarEmail']);
+Route::middleware('auth:sanctum')->put('/editarVendedor/{vendedor_id}', [EditarVendedorController::class, 'editarVendedor']);
+
+Route::middleware('auth:sanctum')->post('/enviarEmail', [EnviarEmailController::class, 'enviarEmail']);

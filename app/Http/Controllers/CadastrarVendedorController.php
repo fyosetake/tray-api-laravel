@@ -21,22 +21,17 @@ class CadastrarVendedorController extends Controller
 
     public function cadastrarVendedor(Request $request)
     {
-        $requestValida = $this->validarRequestService->validarRequest($request, new Vendedores);
-
-        if ($requestValida === false) {
-            return new Response('É necessário preencher todos os atributos corretamente', 400);
-        }
-
         $dadosVendedor = [
             'nome' => $request->input('nome'),
             'email' => $request->input('email'),
         ];
 
         try {
+            $requestValida = $this->validarRequestService->validarRequest($request, new Vendedores);
             $vendedorCadastrado = $this->cadastrarVendedorService->cadastrarVendedor($dadosVendedor);
-            return new Response($vendedorCadastrado, 201);
+            return new Response(['success' => 'true', 'message' => 'Cadastro realizado!'], Response::HTTP_CREATED);
         } catch (\Exception $e) {
-            return new Response(['message' => 'Ocorreu um erro durante o cadastro do Vendedor', 'error' => $e->getMessage()], 500);
+            return new Response(['success' => 'false', 'message' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

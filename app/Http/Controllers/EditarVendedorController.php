@@ -21,27 +21,17 @@ class EditarVendedorController extends Controller
 
     public function editarVendedor(Request $request, $vendedor_id)
     {
-        $requestValida = $this->validarRequestService->validarRequest($request, new Vendedores);
-
-        if ($requestValida === false) {
-            return new Response('É necessário preencher todos os atributos corretamente', 400);
-        }
-
         $dadosVendedor = [
             'nome' => $request->input('nome'),
             'email' => $request->input('email'),
         ];
 
         try {
+            $requestValida = $this->validarRequestService->validarRequest($request, new Vendedores);
             $vendedorAtualizado = $this->editarVendedorService->editarVendedor($vendedor_id, $dadosVendedor);
-
-            if ($vendedorAtualizado) {
-                return new Response(['message' => 'Vendedor atualizado com sucesso', 'data' => $vendedorAtualizado], 200);
-            }
-
-            return new Response(['error' => 'Vendedor não encontrado'], 404);
+            return new Response(['success' => 'true', 'message' => 'Edição realizada!'], Response::HTTP_OK);
         } catch (\Exception $e) {
-            return new Response(['error' => 'Ocorreu um erro ao editar o vendedor: ' . $e->getMessage()], 500);
+            return new Response(['success' => 'false', 'message' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

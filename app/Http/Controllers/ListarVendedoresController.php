@@ -18,9 +18,9 @@ class ListarVendedoresController extends Controller
     {
         try {
             $vendedores = $this->listarVendedoresService->listarVendedores();
-            return new Response($vendedores, 200);
+            return new Response($vendedores, Response::HTTP_OK);
         } catch (\Exception $e) {
-            return new Response(['error' => 'Ocorreu um erro ao listar os vendedores: ' . $e->getMessage()], 500);
+            return new Response(['error' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

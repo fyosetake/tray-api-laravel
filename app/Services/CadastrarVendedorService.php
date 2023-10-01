@@ -16,10 +16,6 @@ class CadastrarVendedorService
 
     public function cadastrarVendedor(array $dados)
     {
-        try {
-            return $this->vendedoresRepository->cadastrarVendedor($dados);
-        } catch (\Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        return $this->vendedoresRepository->cadastrarVendedor($dados);
     }
 }

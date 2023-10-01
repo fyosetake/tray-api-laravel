@@ -16,10 +16,6 @@ class DeletarVendedorService
 
     public function deletarVendedor($vendedor_id)
     {
-        try {
-            return $this->vendedoresRepository->deletarVendedor($vendedor_id);
-        } catch (\Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        return $this->vendedoresRepository->deletarVendedor($vendedor_id);
     }
 }

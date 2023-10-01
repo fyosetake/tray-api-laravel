@@ -30,10 +30,6 @@ class CadastrarVendaService
             'comissao' => $dados['comissao']
         ];
 
-        try {
-            return $this->vendasRepository->cadastrarVenda($dadosVenda);
-        } catch (\Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        return $this->vendasRepository->cadastrarVenda($dadosVenda);
     }
 }

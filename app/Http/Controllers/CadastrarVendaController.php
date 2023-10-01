@@ -7,6 +7,7 @@ use App\Services\ValidarRequestService;
 use App\Models\Vendas;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use LDAP\Result;
 
 class CadastrarVendaController extends Controller
 {
@@ -21,12 +22,6 @@ class CadastrarVendaController extends Controller
 
     public function cadastrarVenda(Request $request)
     {
-        $requestValida = $this->validarRequestService->validarRequest($request, new Vendas);
-
-        if ($requestValida === false) {
-            return new Response('É necessário preencher todos os atributos corretamente', 400);
-        }
-
         $dadosVenda = [
             'vendedor_id' => $request->input('vendedor_id'),
             'valor' => $request->input('valor'),
@@ -34,10 +29,11 @@ class CadastrarVendaController extends Controller
         ];
 
         try {
+            $requestValida = $this->validarRequestService->validarRequest($request, new Vendas);
             $vendaCadastrada = $this->cadastrarVendaService->cadastrarVenda($dadosVenda);
-            return new Response($vendaCadastrada, 201);
+            return new Response(['success' => 'true', 'message' => 'Cadastro realizado!'], Response::HTTP_CREATED);
         } catch (\Exception $e) {
-            return new Response(['message' => 'Ocorreu um erro durante o cadastro da Venda', 'error' => $e->getMessage()], 500);
+            return new Response(['success' => 'false', 'message' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

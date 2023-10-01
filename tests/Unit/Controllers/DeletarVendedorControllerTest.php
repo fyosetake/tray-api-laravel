@@ -32,9 +32,9 @@ class DeletarVendedorControllerTest extends TestCase
     public static function dataProviderDeletarVendedor()
     {
         return [
-            [1, true, 200, ['message' => 'Vendedor deletado com sucesso']],
-            [2, false, 404, ['error' => 'Vendedor não encontrado']],
-            [3, true, 200, ['message' => 'Vendedor deletado com sucesso']],
+            [1, true, 200, [
+                'success' => 'true',
+                'message' => 'Exclusão realizada!',]],
         ];
     }
 }

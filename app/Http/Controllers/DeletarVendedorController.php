@@ -18,14 +18,9 @@ class DeletarVendedorController extends Controller
     {
         try {
             $vendedorDeletado = $this->deletarVendedorService->deletarVendedor($vendedor_id);
-
-            if ($vendedorDeletado) {
-                return new Response(['message' => 'Vendedor deletado com sucesso'], 200);
-            } else {
-                return new Response(['error' => 'Vendedor não encontrado'], 404);
-            }
+            return new Response(['success' => 'true', 'message' => 'Exclusão realizada!'], Response::HTTP_OK);
         } catch (\Exception $e) {
-            return new Response(['error' => 'Ocorreu um erro ao deletar o vendedor: ' . $e->getMessage()], 500);
+            return new Response(['success' => 'false', 'message' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

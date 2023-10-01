@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\ListarVendasService;
 use Illuminate\Http\Response;
+use LDAP\Result;
 
 class ListarVendasController extends Controller
 {
@@ -18,9 +19,9 @@ class ListarVendasController extends Controller
     {
         try {
             $vendas = $this->listarVendasService->listarVendas();
-            return new Response($vendas, 200);
+            return new Response($vendas, Response::HTTP_OK);
         } catch (\Exception $e) {
-            return new Response(['error' => 'Ocorreu um erro ao listar as vendas: ' . $e->getMessage()], 500);
+            return new Response(['error' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -28,9 +29,9 @@ class ListarVendasController extends Controller
     {
         try {
             $vendas = $this->listarVendasService->listarVendas($vendedor_id);
-            return new Response($vendas, 200);
+            return new Response($vendas, Response::HTTP_OK);
         } catch (\Exception $e) {
-            return new Response(['error' => 'Ocorreu um erro ao listar as vendas: ' . $e->getMessage()], 500);
+            return new Response(['error' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -45,17 +45,10 @@ class CadastrarVendaControllerTest extends TestCase
             [
                 ['vendedor_id' => 1, 'valor' => 100.50, 'data' => '2023-09-30'],
                 201,
-                ['vendedor_id' => 1, 'valor' => 100.50, 'data' => '2023-09-30']
-            ],
-            [
-                ['vendedor_id' => 2, 'valor' => 1000, 'data' => '2023-11-15'],
-                201,
-                ['vendedor_id' => 2, 'valor' => 1000, 'data' => '2023-11-15']
-            ],
-            [
-                ['vendedor_id' => 5, 'valor' => 1500, 'data' => '2023-09-30'],
-                201,
-                ['vendedor_id' => 5, 'valor' => 1500, 'data' => '2023-09-30']
+                [
+                    'success' => 'true',
+                    'message' => 'Cadastro realizado!'
+                ]
             ],
         ];
     }

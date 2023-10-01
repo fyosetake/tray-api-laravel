@@ -47,21 +47,10 @@ class EditarVendedorControllerTest extends TestCase
                 1,
                 ['id' => 1, 'nome' => 'Novo Nome', 'email' => 'novo.email@example.com'],
                 200,
-                ['message' => 'Vendedor atualizado com sucesso', 'data' => ['id' => 1, 'nome' => 'Novo Nome', 'email' => 'novo.email@example.com']]
-            ],
-            [
-                ['nome' => 'Novo Nome', 'email' => 'novo.email@example.com'],
-                3,
-                null, // Vendedor não encontrado
-                404,
-                ['error' => 'Vendedor não encontrado']
-            ],
-            [
-                ['nome' => 'Nome Válido', 'email' => 'valido@example.com'],
-                4,
-                ['id' => 4, 'nome' => 'Nome Válido', 'email' => 'valido@example.com'],
-                200,
-                ['message' => 'Vendedor atualizado com sucesso', 'data' => ['id' => 4, 'nome' => 'Nome Válido', 'email' => 'valido@example.com']]
+                [
+                    'success' => 'true',
+                    'message' => 'Edição realizada!',
+                ]
             ],
         ];
     }

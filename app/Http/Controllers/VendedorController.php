@@ -41,8 +41,8 @@ class VendedorController extends Controller
         ];
 
         try {
-            $requestValida = $this->validarRequestService->validarRequest($request, new Vendedores);
-            $vendedorCadastrado = $this->cadastrarVendedorService->cadastrarVendedor($dadosVendedor);
+            $this->validarRequestService->validarRequest($request, new Vendedores);
+            $this->cadastrarVendedorService->cadastrarVendedor($dadosVendedor);
             return new Response(['success' => true, 'message' => 'Cadastro realizado!'], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return new Response(['success' => false, 'message' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -57,8 +57,8 @@ class VendedorController extends Controller
         ];
 
         try {
-            $requestValida = $this->validarRequestService->validarRequest($request, new Vendedores);
-            $vendedorAtualizado = $this->editarVendedorService->editarVendedor($vendedor_id, $dadosVendedor);
+            $this->validarRequestService->validarRequest($request, new Vendedores);
+            $this->editarVendedorService->editarVendedor($vendedor_id, $dadosVendedor);
             return new Response(['success' => true, 'message' => 'Vendedor alterado!'], Response::HTTP_OK);
         } catch (\Exception $e) {
             return new Response(['success' => false, 'message' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -78,7 +78,7 @@ class VendedorController extends Controller
     public function deletarVendedor($vendedor_id)
     {
         try {
-            $vendedorDeletado = $this->deletarVendedorService->deletarVendedor($vendedor_id);
+            $this->deletarVendedorService->deletarVendedor($vendedor_id);
             return new Response(['success' => true, 'message' => 'Vendedor excluído!'], Response::HTTP_OK);
         } catch (\Exception $e) {
             return new Response(['success' => false, 'message' => 'Ocorreu um erro!'], Response::HTTP_INTERNAL_SERVER_ERROR);

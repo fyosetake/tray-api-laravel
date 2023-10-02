@@ -7,7 +7,6 @@ use App\Mail\VendasDiariasVendedorMailable;
 use App\Mail\VendasDiariasAdministradorMailable;
 use App\Repositories\VendasRepository;
 use App\Repositories\VendedoresRepository;
-use Carbon\Carbon;
 
 class EnviarEmailService
 {

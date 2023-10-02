@@ -3,11 +3,11 @@
 namespace App\Services;
 
 use App\Repositories\VendasRepository;
-use \Exception;
 
 class CadastrarVendaService
 {
     private $vendasRepository;
+    const PORCENTAGEM_COMISSAO = 0.085;
 
     public function __construct(VendasRepository $vendasRepository)
     {
@@ -16,7 +16,7 @@ class CadastrarVendaService
 
     private function calcularComissao(float $valor): float
     {
-        return $valor * 0.085;
+        return $valor * self::PORCENTAGEM_COMISSAO;
     }
 
     public function cadastrarVenda(array $dados)

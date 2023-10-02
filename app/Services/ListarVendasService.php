@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\VendasRepository;
-use \Exception;
 
 class ListarVendasService
 {

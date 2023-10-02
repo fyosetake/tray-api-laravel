@@ -6,7 +6,7 @@ use App\Services\EnviarEmailService;
 class EnviarEmailAdministradorCommand extends Command
 {
     protected $signature = 'enviar-email:administrador';
-    protected $description = 'Envia e-mail para administrador diariamente às 23h59';
+    protected $description = 'Envia e-mail para administrador diariamente às 0hs';
 
     public function __construct()
     {

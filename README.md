@@ -34,14 +34,6 @@ cd tray-api-laravel
 
 ```
 
-3. Instale as dependências do Composer:
-
-```bash
-
-composer install
-
-```
-
 ## Construa as imagens e inicie os Containeres no Docker
 
 1. Construa as imagens da aplicação Laravel e do Banco de dados MySQL:
@@ -66,57 +58,79 @@ Para executar as Migrations, acesse o container do Laravel:
 
 1. Certifique-se de que o container esteja em execução.
 
-2. No terminal, execute o seguinte comando para obter o CONTAINER ID da aplicação Laravel:
-
 ```bash
 
 docker ps
 
 ```
 
-3. Acesse o container do Laravel:
+2. Os próximo comandos serão direcionados para o container, bastando executá-los no diretório do projeto.
+
+3. Execute o 'composer install':
 
 ```bash
 
-docker exec -it {CONTAINER ID} bash
+docker exec api-tray composer install
 
 ```
 
-4. No container, execute o comando Artisan para rodar as Migrations:
+4. Execute o comando para gerar uma 'chave de aplicativo' Laravel:
 
 ```bash
 
-php artisan migrate
+docker exec api-tray php artisan key:generate
 
 ```
 
-5. No container, execute o comando Artisan para rodar os Seeders:
+5. Execute o comando para rodar o cron:
 
 ```bash
 
-php artisan make:seeder VendaSeeder
+docker exec api-tray cron
 
 ```
+
+4. Execute o comando Artisan para rodar as Migrations:
 
 ```bash
 
-php artisan make:seeder VendedorSeeder
+docker exec api-tray php artisan migrate
 
 ```
 
-## Instruções para testes
-
-Para rodar os testes de unidade, basta executar o seguinte comando:
+5. Execute o comando Artisan para rodar as Seeders:
 
 ```bash
 
-php artisan test
+docker exec api-tray php artisan db:seed
 
 ```
 
-## Instruções de uso
+6. Rode os testes unitários:
 
-Conforme o desafio proposto, o uso pode ser assim definido:
+```bash
+
+docker exec api-tray php artisan test
+
+```
+
+7. Inicie o servidor de desenvolvimento embutido no Laravel:
+
+```bash
+
+docker exec api-tray php artisan serve --host=0.0.0.0 --port=80
+
+```
+
+## Instruções de uso através da aplicação VUE
+
+Conforme o desafio proposto, o acesso às APIS poderá ser feito através da aplicação VUE disponível neste repositório:
+
+https://github.com/fyosetake/tray-api-vue
+
+## Instruções de uso através do acesso direto aos endpoints via CURL
+
+É possível também acessar individualmente os endpoints. Abaixo estão alguns exemplos:
 
 1. Listar Vendas:
 

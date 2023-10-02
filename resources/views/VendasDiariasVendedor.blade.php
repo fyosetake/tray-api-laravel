@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Resumo de vendas</title>
+    <title>Resumo das vendas</title>
 </head>
 <body>
-    <h1>Resumo de Vendas do Dia</h1>
-    <p>Total de vendas</p>
+    <h1>Total das Vendas do Dia</h1>
+    <p>Vendas: {{ $totalVendas }} itens</p>
+    <p>Valor: R$ {{ $totalValor }}</p>
+    <p>Comissão: R$ {{ $totalComissao }}</p>
 </body>
 </html>

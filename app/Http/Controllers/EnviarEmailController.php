@@ -16,9 +16,9 @@ class EnviarEmailController extends Controller
 
     public function enviarEmail(Request $request)
     {
-        $emailDestinatario = $request->input('email');
-        $perfilDestinatario = $request->input('perfil');
-        $resultado = $this->emailService->enviarEmail($emailDestinatario, $perfilDestinatario);
+        $data = $request->input('data');
+        $vendedor_id = $request->input('vendedor_id');
+        $resultado = $this->emailService->enviarEmailVendedor($data, $vendedor_id);
         
         return $resultado;
     }

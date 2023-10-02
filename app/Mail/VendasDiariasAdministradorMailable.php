@@ -13,12 +13,11 @@ class VendasDiariasAdministradorMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public $totalValor;
+
+    public function __construct($totalValor)
     {
-        //
+        $this->totalValor = $totalValor;
     }
 
     /**
@@ -27,27 +26,18 @@ class VendasDiariasAdministradorMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Relatório Diário de Vendas: Total de Vendas e Valor.',
+            subject: 'Relatório Diário de Vendas: Valor Total.',
         );
     }
 
     /**
      * Get the message content definition.
+     * @return \Illuminate\Mail\Mailables\Content
      */
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'VendasDiariasAdministrador',
         );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
     }
 }

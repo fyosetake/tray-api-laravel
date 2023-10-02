@@ -41,4 +41,10 @@ class VendedoresRepository
 
         return null;
     }
+
+    public function obterEmailVendedor($vendedor_id)
+    {
+        $vendedor = Vendedores::find($vendedor_id);
+        return $vendedor->email ?? null;
+    }
 }

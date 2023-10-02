@@ -102,7 +102,9 @@ docker exec api-tray php artisan migrate
 
 ```bash
 
-docker exec api-tray php artisan db:seed
+docker exec api-tray php artisan db:seed --class=VendaSeeder
+
+docker exec api-tray php artisan db:seed --class=VendedorSeeder
 
 ```
 

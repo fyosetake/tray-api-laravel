@@ -4,8 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\EnviarEmailVendedor;
-use App\Console\Commands\EnviarEmailAdministrador;
+use App\Console\Commands\EnviarEmailVendedorCommand;
+use App\Console\Commands\EnviarEmailAdministradorCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,9 +14,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(EnviarEmailVendedor::class)->dailyAt('00:00');
+        // $schedule->command(EnviarEmailVendedorCommand::class)->dailyAt('00:00');
 
-        $schedule->command(EnviarEmailAdministrador::class)->dailyAt('00:00');
+        // $schedule->command(EnviarEmailAdministradorCommand::class)->dailyAt('00:00');
     }
 
     /**

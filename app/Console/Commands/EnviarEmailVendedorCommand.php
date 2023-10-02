@@ -3,10 +3,10 @@
 use Illuminate\Console\Command;
 use App\Services\EnviarEmailService;
 
-class EnviarEmailAdministrador extends Command
+class EnviarEmailVendedorCommand extends Command
 {
-    protected $signature = 'enviar-email:administrador';
-    protected $description = 'Envia e-mail para administrador diariamente às 23h59';
+    protected $signature = 'enviar-email:vendedor';
+    protected $description = 'Envia e-mail para vendedor diariamente às 0hs';
 
     public function __construct()
     {
@@ -16,6 +16,6 @@ class EnviarEmailAdministrador extends Command
     public function handle(EnviarEmailService $emailService)
     {
         $data = now()->subDay()->format('Y-m-d');
-        $emailService->enviarEmailAdministrador($data);
+        $emailService->enviarEmailTodosVendedores($data);
     }
 }

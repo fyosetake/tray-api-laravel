@@ -34,6 +34,14 @@ cd tray-api-laravel
 
 ```
 
+3. Gere o arquivo '.env' à partir do '.env.example':
+
+```bash
+
+cp .env.example .env
+
+```
+
 ## Construa as imagens e inicie os Containeres no Docker
 
 1. Construa as imagens da aplicação Laravel e do Banco de dados MySQL:

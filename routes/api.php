@@ -22,12 +22,12 @@ Route::post('/autenticar', [AutenticacaoController::class, 'autenticar']);
 Route::post('/registrar', [AutenticacaoController::class, 'registrar']);
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/listarVendedores', [VendedorController::class, 'listarVendedores']);
-    Route::post('/cadastrarVendedor', [VendedorController::class, 'cadastrarVendedor']);
-    Route::post('/cadastrarVenda', [CadastrarVendaController::class, 'cadastrarVenda']);
-    Route::get('/listarVendas', [ListarVendasController::class, 'listarVendas']);
-    Route::get('/listarVendas/Vendedor/{vendedor_id}', [ListarVendasController::class, 'listarVendasVendedor']);
-    Route::delete('/deletarVendedor/{vendedor_id}', [VendedorController::class, 'deletarVendedor']);
-    Route::put('/editarVendedor/{vendedor_id}', [VendedorController::class, 'editarVendedor']);
-    Route::post('/enviarEmail', [EnviarEmailController::class, 'enviarEmail']);
+    Route::get('/vendedor/listar', [VendedorController::class, 'listarVendedores']);
+    Route::post('/vendedor/cadastrar', [VendedorController::class, 'cadastrarVendedor']);
+    Route::post('/venda/cadastrar', [CadastrarVendaController::class, 'cadastrarVenda']);
+    Route::get('/venda/listar', [ListarVendasController::class, 'listarVendas']);
+    Route::get('/venda/listar/vendedor/{vendedor_id}', [ListarVendasController::class, 'listarVendasVendedor']);
+    Route::delete('/vendedor/deletar/{vendedor_id}', [VendedorController::class, 'deletarVendedor']);
+    Route::put('/vendedor/editar/{vendedor_id}', [VendedorController::class, 'editarVendedor']);
+    Route::post('/email/enviar', [EnviarEmailController::class, 'enviarEmail']);
 });
